@@ -21,7 +21,7 @@ export default function LandingPage() {
   }, [authenticated, router]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       {/* Nav */}
       <NavbarLanding onLogin={login}/>
 
