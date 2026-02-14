@@ -13,8 +13,7 @@
 
  "Your AI financial agent on Tempo — invoicing, expenses, payments, and predictions in one conversational interface."
 
- A chat-first AI agent that handles all financial operations through natural language, backed by a dashboard for visual insights. Users log in with email/phone (Privy), never see
- crypto complexity, and all transactions are gasless.
+ A chat-first AI agent that handles all financial operations through natural language, backed by a dashboard for visual insights. Users log in with email phone (Privy), never see crypto complexity, and all transactions are gasless.
 
  ---
  Tech Stack
