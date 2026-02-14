@@ -4,7 +4,7 @@ import {
   ArrowRight,
   Sparkles
 } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface NavbarProps {
     onLogin: () => void;
@@ -12,8 +12,43 @@ interface NavbarProps {
 
 export default function Hero ({onLogin}:NavbarProps) {
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
+  const [targetPosition, setTargetPosition] = useState({ x: 50, y: 50 });
   const [isHovering, setIsHovering] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const animationRef = useRef<number>();
+
+  // Smooth animation with different speeds for hover vs unhover
+  useEffect(() => {
+    const animate = () => {
+      setMousePosition(prev => {
+        const dx = targetPosition.x - prev.x;
+        const dy = targetPosition.y - prev.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 1) {
+          return targetPosition;
+        }
+
+        // Fast when hovering (0.3), slow when unhovering (0.03)
+        const speed = isHovering ? 0.3 : 0.02;
+
+        return {
+          x: prev.x + dx * speed,
+          y: prev.y + dy * speed,
+        };
+      });
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [targetPosition, isHovering]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLHeadingElement>) => {
     if (!headingRef.current) return;
@@ -22,18 +57,26 @@ export default function Hero ({onLogin}:NavbarProps) {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     
-    setMousePosition({ x, y });
+    setTargetPosition({ x, y });
   };
 
   return (
-  <section className="flex items-center justify-center w-screen min-h-[95vh] mx-auto px-6 pt-20 pb-16 text-center bg-gradient-to-b from-black from-0% via-blue-800 via-50% via-cyan-700 via-90% to-white to-100%">
+  <section className="flex items-center justify-center w-screen min-h-screen mx-auto px-4 py-6 text-center bg-gradient-to-b from-black from-0% via-vanto-800 via-40% via-vanto-600 via-70% via-vanto-500 via-85% to-white to-100% z-0">
     <div className="max-w-6xl">
-      <div className="relative">
-        {/* Blurred text layer (underneath) */}
-        <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-8xl font-bold leading-tight text-white blur-md select-none">
+        <div className="relative flex items-center justify-center mx-auto">
+                {/* Blurred text layer (underneath) with INVERTED mask */}
+        <h1 
+          className="text-7xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-tight text-vanto-200 text-outline-vanto-600 select-none p-8"
+          style={{ 
+            WebkitTextStroke: '4px #748ffc',
+            filter: 'blur(2px)',
+            maskImage: `radial-gradient(circle 100px at ${mousePosition.x}% ${mousePosition.y}%, transparent 0%, transparent 70%, black 100%)`,
+            WebkitMaskImage: `radial-gradient(circle 100px at ${mousePosition.x}% ${mousePosition.y}%, transparent 0%, transparent 70%, black 100%)`,
+          }}
+        >
           Your AI Financial Agent
           <br />
-          <span className="text-cyan-300">on Tempo</span>
+          <span className="text-cyan-300 block mt-4">on Tempo</span>
         </h1>
 
         {/* Sharp text layer with mask (on top) */}
@@ -43,17 +86,17 @@ export default function Hero ({onLogin}:NavbarProps) {
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => {
             setIsHovering(false);
-            setMousePosition({ x: 50, y: 50 });
+            setTargetPosition({ x: 50, y: 50 });
           }}
-          className="absolute inset-0 text-5xl sm:text-5xl md:text-6xl lg:text-8xl font-bold leading-tight text-white cursor-default select-none"
+          className="absolute inset-0 text-7xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-tight text-white cursor-default select-none p-8"
           style={{
-            maskImage: `radial-gradient(circle 200px at ${mousePosition.x}% ${mousePosition.y}%, black 0%, transparent 100%)`,
-            WebkitMaskImage: `radial-gradient(circle 200px at ${mousePosition.x}% ${mousePosition.y}%, black 0%, transparent 100%)`,
+            maskImage: `radial-gradient(circle 100px at ${mousePosition.x}% ${mousePosition.y}%, black 0%, black 70%, transparent 100%)`,
+            WebkitMaskImage: `radial-gradient(circle 100px at ${mousePosition.x}% ${mousePosition.y}%, black 0%, black 70%, transparent 100%)`,
           }}
         >
           Your AI Financial Agent
           <br />
-          <span className="text-cyan-300">on Tempo</span>
+          <span className="text-cyan-300 block mt-4">on Tempo</span>
         </h1>
       </div>
 
@@ -70,7 +113,7 @@ export default function Hero ({onLogin}:NavbarProps) {
           Start with Email or Phone
           <ArrowRight className="w-4 h-4" />
         </button>
-        <p className="text-sm text-gray-200">No seed phrases. No gas fees. Just finance.</p>
+        <p className="text-sm text-gray-500">No seed phrases. No gas fees. Just finance.</p>
       </div>
     </div>
   </section>
