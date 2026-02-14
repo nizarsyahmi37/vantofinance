@@ -52,7 +52,7 @@ export default function LandingPage() {
       <Features/>
 
       {/* How it works */}
-      <HowItWorks/>
+      <HowItWorks onLogin={login}/>
 
       {/* CTA */}
       <CTASection onLogin={login}/>
