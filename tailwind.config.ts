@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        vantofinance: {
+        vanto: {
           50: "#f0f4ff",
           100: "#dbe4ff",
           200: "#bac8ff",
