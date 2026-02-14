@@ -1,4 +1,7 @@
+"use client";
+
 import { Zap } from "lucide-react";
+import {motion } from "framer-motion";
 
 interface NavbarProps {
 	onLogin: () => void;
@@ -6,7 +9,13 @@ interface NavbarProps {
 
 export default function NavbarLanding({ onLogin }: NavbarProps) {
 	return (
-    <nav className="flex items-center justify-between px-6 py-4 max-w-6xl mx-auto sticky top-0">
+    <motion.nav 
+      className="sticky top-0 flex items-center w-full justify-center z-100"
+      initial = {{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1}}
+      transition={{ duration: 0.3, ease: "easeOut"}}
+      >
+      <div className="flex items-center justify-between px-6 py-4 w-full max-w-6xl mx auto">
       <div className="flex items-center gap-2">
         <div className="w-8 h-8 rounded-lg bg-vanto-600 flex items-center justify-center">
           <Zap className="w-5 h-5" />
@@ -19,7 +28,8 @@ export default function NavbarLanding({ onLogin }: NavbarProps) {
       >
         Get Started
       </button>
-    </nav>
+      </div>
+    </motion.nav>
 	);
 }
 
