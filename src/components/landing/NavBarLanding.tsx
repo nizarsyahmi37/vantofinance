@@ -10,7 +10,7 @@ interface NavbarProps {
 export default function NavbarLanding({ onLogin }: NavbarProps) {
 	return (
     <motion.nav 
-      className="sticky top-0 flex items-center w-full justify-center z-100"
+      className="sticky top-0 flex items-center w-full justify-center bg-blur z-100"
       initial = {{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1}}
       transition={{ duration: 0.3, ease: "easeOut"}}
@@ -20,11 +20,11 @@ export default function NavbarLanding({ onLogin }: NavbarProps) {
         <div className="w-8 h-8 rounded-lg bg-vanto-600 flex items-center justify-center">
           <Zap className="w-5 h-5" />
         </div>
-        <span className="text-xl font-bold text-gray-900">Vanto</span>
+        <span className="text-xl font-bold text-vanto-50">Vanto</span>
       </div>
       <button
         onClick={onLogin}
-        className="px-4 py-2 rounded-lg bg-vanto-600 text-sm font-medium hover:bg-vanto-700 transition-colors"
+        className="px-4 py-2 rounded-lg bg-vanto-600 text-sm font-medium hover:bg-vanto-700 text-white transition-colors"
       >
         Get Started
       </button>
