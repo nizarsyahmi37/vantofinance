@@ -61,15 +61,14 @@ export default function Hero ({onLogin}:NavbarProps) {
   };
 
   return (
-  <section className="flex items-center justify-center w-screen min-h-screen mx-auto px-4 py-6 text-center bg-gradient-to-b from-black from-0% via-vanto-800 via-40% via-vanto-600 via-70% via-vanto-500 via-85% to-white to-100% z-0">
+  <section className="flex items-center justify-center w-screen min-h-screen mx-auto px-4 py-6 text-center bg-gradient-to-b from-black from-0% via-vanto-800 via-40% via-vanto-600 via-70% via-vanto-400 via-88% to-white to-100%">
     <div className="max-w-6xl">
-        <div className="relative flex items-center justify-center mx-auto">
+        <div className="relative flex items-center justify-center mx-auto isolate z-0">
                 {/* Blurred text layer (underneath) with INVERTED mask */}
         <h1 
-          className="text-7xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-tight text-vanto-200 text-outline-vanto-600 select-none p-8"
+          className="text-7xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-tight text-vanto-200  select-none p-8"
           style={{ 
-            WebkitTextStroke: '4px #748ffc',
-            filter: 'blur(2px)',
+            filter: 'blur(3px)',
             maskImage: `radial-gradient(circle 100px at ${mousePosition.x}% ${mousePosition.y}%, transparent 0%, transparent 70%, black 100%)`,
             WebkitMaskImage: `radial-gradient(circle 100px at ${mousePosition.x}% ${mousePosition.y}%, transparent 0%, transparent 70%, black 100%)`,
           }}
@@ -100,12 +99,12 @@ export default function Hero ({onLogin}:NavbarProps) {
         </h1>
       </div>
 
-      <p className="text-xl text-gray-100 mt-6 max-w-2xl mx-auto">
+      <p className="text-lg sm:text-lg lg:text-2xl text-gray-100 mt-6 max-w-2xl mx-auto">
         Invoicing, expenses, payments, and predictions in one conversational
         interface. Just chat naturally - no crypto complexity.
       </p>
 
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+      <div className="flex flex-col items-center justify-center gap-8 mt-10">
         <button
           onClick={onLogin}
           className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-blue-600 font-semibold hover:bg-gray-100 transition-colors"
@@ -113,7 +112,7 @@ export default function Hero ({onLogin}:NavbarProps) {
           Start with Email or Phone
           <ArrowRight className="w-4 h-4" />
         </button>
-        <p className="text-sm text-gray-500">No seed phrases. No gas fees. Just finance.</p>
+        <p className="text-sm font-bold">No seed phrases. No gas fees. Just finance.</p>
       </div>
     </div>
   </section>

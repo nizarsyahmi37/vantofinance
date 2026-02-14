@@ -152,7 +152,7 @@ export default function Features() {
                     rotate: 360,
                   }}
                   transition={{ 
-                    duration: 20, 
+                    duration: 30, 
                     repeat: Infinity, 
                     ease: "linear" 
                   }}
