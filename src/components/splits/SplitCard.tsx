@@ -47,7 +47,7 @@ export function SplitCard({ split }: SplitCardProps) {
         </div>
         <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
           <div
-            className="h-full bg-pulse-500 rounded-full transition-all"
+            className="h-full bg-vanto-500 rounded-full transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>

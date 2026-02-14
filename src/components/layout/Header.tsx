@@ -19,7 +19,7 @@ export function Header({ onToggleChat, chatOpen }: HeaderProps) {
   return (
     <header className="h-16 border-b bg-white flex items-center justify-between px-6">
       <div className="flex items-center gap-4">
-        <h1 className="text-lg font-semibold text-gray-900 md:hidden">Pulse</h1>
+        <h1 className="text-lg font-semibold text-gray-900 md:hidden">Vanto</h1>
       </div>
 
       <div className="flex items-center gap-3">
@@ -35,8 +35,8 @@ export function Header({ onToggleChat, chatOpen }: HeaderProps) {
           className={cn(
             "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
             chatOpen
-              ? "bg-pulse-100 text-pulse-700"
-              : "bg-pulse-600 text-white hover:bg-pulse-700"
+              ? "bg-vanto-100 text-vanto-700"
+              : "bg-vanto-600 text-white hover:bg-vanto-700"
           )}
         >
           <MessageSquare className="w-4 h-4" />

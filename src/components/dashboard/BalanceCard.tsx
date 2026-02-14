@@ -31,8 +31,8 @@ export function BalanceCard() {
           </p>
           <p className="text-xs text-gray-400 mt-1">AlphaUSD on Tempo</p>
         </div>
-        <div className="w-12 h-12 rounded-xl bg-pulse-100 flex items-center justify-center">
-          <Wallet className="w-6 h-6 text-pulse-600" />
+        <div className="w-12 h-12 rounded-xl bg-vanto-100 flex items-center justify-center">
+          <Wallet className="w-6 h-6 text-vanto-600" />
         </div>
       </div>
 

@@ -1,4 +1,4 @@
- Pulse - AI Financial Agent on Tempo
+ Vanto - AI Financial Agent on Tempo
 
  Context
 
@@ -9,7 +9,7 @@
  blockchain events and autonomously understand context — auto-reconciling invoices, categorizing expenses, tracking splits, and resolving bets. This is the key innovation.
 
  ---
- Product: Pulse
+ Product: Vanto
 
  "Your AI financial agent on Tempo — invoicing, expenses, payments, and predictions in one conversational interface."
 

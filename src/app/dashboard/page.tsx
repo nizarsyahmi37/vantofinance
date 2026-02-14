@@ -72,7 +72,7 @@ export default function DashboardPage() {
         <div className="rounded-xl border bg-white p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-gray-900">Recent Transactions</h3>
-            <Link href="/dashboard/expenses" className="text-sm text-pulse-600 hover:underline">
+            <Link href="/dashboard/expenses" className="text-sm text-vanto-600 hover:underline">
               View all
             </Link>
           </div>
@@ -85,7 +85,7 @@ export default function DashboardPage() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-gray-900">Pending Invoices</h3>
-            <Link href="/dashboard/invoices" className="text-sm text-pulse-600 hover:underline">
+            <Link href="/dashboard/invoices" className="text-sm text-vanto-600 hover:underline">
               View all
             </Link>
           </div>

@@ -18,8 +18,8 @@ export function InvoiceCard({ invoice }: { invoice: Invoice }) {
     <div className="rounded-xl border bg-white p-4 hover:shadow-sm transition-shadow">
       <div className="flex items-start justify-between">
         <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-lg bg-pulse-50 flex items-center justify-center">
-            <FileText className="w-5 h-5 text-pulse-600" />
+          <div className="w-10 h-10 rounded-lg bg-vanto-50 flex items-center justify-center">
+            <FileText className="w-5 h-5 text-vanto-600" />
           </div>
           <div>
             <p className="font-medium text-gray-900">{invoice.description}</p>
@@ -49,7 +49,7 @@ export function InvoiceCard({ invoice }: { invoice: Invoice }) {
             href={`https://explore.tempo.xyz/tx/${invoice.paid_tx_hash}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-pulse-600 hover:underline"
+            className="text-vanto-600 hover:underline"
           >
             View tx
           </a>
