@@ -1,4 +1,4 @@
--- Pulse - AI Financial Agent on Tempo
+-- Vanto - AI Financial Agent on Tempo
 -- Supabase Database Schema
 
 -- Enable UUID extension

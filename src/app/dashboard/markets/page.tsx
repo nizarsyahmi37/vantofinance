@@ -35,7 +35,7 @@ export default function MarketsPage() {
             onClick={() => setStatusFilter(s)}
             className={`px-4 py-2 text-sm font-medium capitalize ${
               statusFilter === s
-                ? "bg-pulse-600 text-white"
+                ? "bg-vanto-600 text-white"
                 : "bg-white text-gray-600 hover:bg-gray-50"
             }`}
           >
@@ -46,7 +46,7 @@ export default function MarketsPage() {
 
       {loading ? (
         <div className="text-center py-12">
-          <div className="w-8 h-8 border-4 border-pulse-200 border-t-pulse-600 rounded-full animate-spin mx-auto" />
+          <div className="w-8 h-8 border-4 border-vanto-200 border-t-vanto-600 rounded-full animate-spin mx-auto" />
         </div>
       ) : markets.length === 0 ? (
         <div className="text-center py-16 rounded-xl border bg-white">

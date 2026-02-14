@@ -15,13 +15,13 @@ export function ChatMessage({ role, content, toolInvocations }: ChatMessageProps
     <div className={`flex gap-3 ${isUser ? "flex-row-reverse" : ""}`}>
       <div
         className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-          isUser ? "bg-gray-200" : "bg-pulse-100"
+          isUser ? "bg-gray-200" : "bg-vanto-100"
         }`}
       >
         {isUser ? (
           <User className="w-4 h-4 text-gray-600" />
         ) : (
-          <Zap className="w-4 h-4 text-pulse-600" />
+          <Zap className="w-4 h-4 text-vanto-600" />
         )}
       </div>
 
@@ -29,7 +29,7 @@ export function ChatMessage({ role, content, toolInvocations }: ChatMessageProps
         <div
           className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
             isUser
-              ? "bg-pulse-600 text-white rounded-br-md"
+              ? "bg-vanto-600 text-white rounded-br-md"
               : "bg-gray-100 text-gray-800 rounded-bl-md"
           }`}
         >
@@ -47,11 +47,11 @@ export function ChatMessage({ role, content, toolInvocations }: ChatMessageProps
 function ToolResult({ invocation }: { invocation: any }) {
   if (invocation.state !== "result") {
     return (
-      <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-pulse-50 text-pulse-600 text-xs">
+      <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-vanto-50 text-vanto-600 text-xs">
         <div className="flex gap-1">
-          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-pulse-400" />
-          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-pulse-400" />
-          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-pulse-400" />
+          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-vanto-400" />
+          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-vanto-400" />
+          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-vanto-400" />
         </div>
         <span>Working on it...</span>
       </div>

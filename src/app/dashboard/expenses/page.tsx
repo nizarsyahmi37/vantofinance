@@ -75,7 +75,7 @@ export default function ExpensesPage() {
               onClick={() => setCategory(cat)}
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                 category === cat
-                  ? "bg-pulse-600 text-white"
+                  ? "bg-vanto-600 text-white"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >
@@ -121,7 +121,7 @@ export default function ExpensesPage() {
         <h3 className="font-semibold text-gray-900 mb-4">All Transactions</h3>
         {loading ? (
           <div className="text-center py-8">
-            <div className="w-8 h-8 border-4 border-pulse-200 border-t-pulse-600 rounded-full animate-spin mx-auto" />
+            <div className="w-8 h-8 border-4 border-vanto-200 border-t-vanto-600 rounded-full animate-spin mx-auto" />
           </div>
         ) : (
           <ExpenseList expenses={expenses} />

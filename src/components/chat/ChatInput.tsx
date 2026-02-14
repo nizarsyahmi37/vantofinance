@@ -25,13 +25,13 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Send $50 to john@email.com for dinner..."
-        className="flex-1 px-4 py-2.5 rounded-full border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-pulse-500 focus:border-transparent"
+        className="flex-1 px-4 py-2.5 rounded-full border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-vanto-500 focus:border-transparent"
         disabled={disabled}
       />
       <button
         type="submit"
         disabled={!input.trim() || disabled}
-        className="p-2.5 rounded-full bg-pulse-600 text-white hover:bg-pulse-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="p-2.5 rounded-full bg-vanto-600 text-white hover:bg-vanto-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
       >
         <Send className="w-4 h-4" />
       </button>
