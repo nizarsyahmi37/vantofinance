@@ -10,7 +10,7 @@ interface NavbarProps {
 export default function NavbarLanding({ onLogin }: NavbarProps) {
 	return (
     <motion.nav 
-      className="sticky top-0 flex items-center w-full justify-center bg-blur z-100"
+      className="sticky top-0 min-h-78 flex items-center w-full justify-center bg-blur z-50"
       initial = {{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1}}
       transition={{ duration: 0.3, ease: "easeOut"}}
