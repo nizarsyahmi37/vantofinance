@@ -29,7 +29,7 @@ export function BalanceCard() {
           <p className="text-3xl font-bold text-gray-900 mt-1">
             {balance ? `$${parseFloat(balance).toFixed(2)}` : "$---.--"}
           </p>
-          <p className="text-xs text-gray-400 mt-1">AlphaUSD on Tempo</p>
+          <p className="text-xs text-gray-400 mt-1">AlphaUSD</p>
         </div>
         <div className="w-12 h-12 rounded-xl bg-vanto-100 flex items-center justify-center">
           <Wallet className="w-6 h-6 text-vanto-600" />

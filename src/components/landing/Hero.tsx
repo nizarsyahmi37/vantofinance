@@ -69,13 +69,11 @@ export default function Hero ({onLogin}:NavbarProps) {
           className="text-7xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-tight text-vanto-200  select-none p-8"
           style={{ 
             filter: 'blur(3px)',
-            maskImage: `radial-gradient(circle 100px at ${mousePosition.x}% ${mousePosition.y}%, transparent 0%, transparent 70%, black 100%)`,
-            WebkitMaskImage: `radial-gradient(circle 100px at ${mousePosition.x}% ${mousePosition.y}%, transparent 0%, transparent 70%, black 100%)`,
+            maskImage: `radial-gradient(circle 300px at ${mousePosition.x}% ${mousePosition.y}%, transparent 0%, transparent 70%, black 100%)`,
+            WebkitMaskImage: `radial-gradient(circle 300px at ${mousePosition.x}% ${mousePosition.y}%, transparent 0%, transparent 70%, black 100%)`,
           }}
         >
           Your AI Financial Agent
-          <br />
-          <span className="text-cyan-300 block mt-4">on Tempo</span>
         </h1>
 
         {/* Sharp text layer with mask (on top) */}
@@ -89,8 +87,8 @@ export default function Hero ({onLogin}:NavbarProps) {
           }}
           className="absolute inset-0 text-7xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-tight text-white cursor-default select-none p-8"
           style={{
-            maskImage: `radial-gradient(circle 100px at ${mousePosition.x}% ${mousePosition.y}%, black 0%, black 70%, transparent 100%)`,
-            WebkitMaskImage: `radial-gradient(circle 100px at ${mousePosition.x}% ${mousePosition.y}%, black 0%, black 70%, transparent 100%)`,
+            maskImage: `radial-gradient(circle 300px at ${mousePosition.x}% ${mousePosition.y}%, black 0%, black 70%, transparent 100%)`,
+            WebkitMaskImage: `radial-gradient(circle 300px at ${mousePosition.x}% ${mousePosition.y}%, black 0%, black 70%, transparent 100%)`,
           }}
         >
           Your AI Financial Agent

@@ -1,9 +1,9 @@
 "use client";
 
 import { usePrivy } from "@privy-io/react-auth";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { InvoiceCard } from "@/components/invoices/InvoiceCard";
-import { FileText, Plus } from "lucide-react";
+import { FileText } from "lucide-react";
 
 export default function InvoicesPage() {
   const { user } = usePrivy();
@@ -13,7 +13,7 @@ export default function InvoicesPage() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const fetchInvoices = useCallback(() => {
     if (!wallet) return;
     setLoading(true);
     fetch(`/api/invoices?wallet=${wallet}&direction=${direction}&status=${statusFilter}`)
@@ -22,6 +22,10 @@ export default function InvoicesPage() {
       .catch(() => {})
       .finally(() => setLoading(false));
   }, [wallet, direction, statusFilter]);
+
+  useEffect(() => {
+    fetchInvoices();
+  }, [fetchInvoices]);
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
@@ -80,7 +84,12 @@ export default function InvoicesPage() {
       ) : (
         <div className="space-y-3">
           {invoices.map((invoice) => (
-            <InvoiceCard key={invoice.id} invoice={invoice} />
+            <InvoiceCard
+              key={invoice.id}
+              invoice={invoice}
+              direction={direction}
+              onPaid={fetchInvoices}
+            />
           ))}
         </div>
       )}

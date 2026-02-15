@@ -2,6 +2,8 @@ import { getServerClient } from "@/lib/supabase/client";
 import { createPublicTempoClient } from "@/lib/tempo/client";
 import { decodeMemo } from "@/lib/tempo/memo";
 import { DEFAULT_TOKEN, TOKEN_DECIMALS } from "@/lib/tempo/tokens";
+import { calculateProbability, calculateShares, calculateSharePrice, calculatePotentialPayout } from "@/lib/markets/pricing";
+import { checkExpiredMarkets } from "@/lib/markets/resolver";
 import { NextResponse } from "next/server";
 import { formatUnits, parseAbiItem } from "viem";
 
@@ -144,31 +146,48 @@ export async function POST() {
         }
 
         case "BET": {
-          // Record prediction market bet
+          // Record prediction market bet with share pricing
           const marketId = decoded.payload.slice(0, -1);
           const position = decoded.payload.slice(-1) === "Y" ? 0 : 1;
+
+          // Verify market is still open
+          const { data: market } = await supabase
+            .from("markets")
+            .select("*")
+            .eq("market_id", marketId)
+            .eq("status", "open")
+            .single();
+
+          if (!market) break;
+
+          // Fetch existing bets for probability calculation
+          const { data: existingBets } = await supabase
+            .from("market_bets")
+            .select("*")
+            .eq("market_id", marketId);
+
+          // Calculate share pricing
+          const probability = calculateProbability(market, existingBets || [], position);
+          const sharePrice = calculateSharePrice(probability);
+          const shares = calculateShares(amount, probability);
+          const potentialPayout = calculatePotentialPayout(shares);
 
           await supabase.from("market_bets").insert({
             market_id: marketId,
             user_wallet: from,
             position,
             amount,
+            shares,
+            purchase_price: sharePrice,
+            potential_payout: potentialPayout,
             tx_hash: txHash,
           });
 
           // Update market total pool
-          const { data: market } = await supabase
+          await supabase
             .from("markets")
-            .select("total_pool")
-            .eq("market_id", marketId)
-            .single();
-
-          if (market) {
-            await supabase
-              .from("markets")
-              .update({ total_pool: market.total_pool + amount })
-              .eq("market_id", marketId);
-          }
+            .update({ total_pool: market.total_pool + amount })
+            .eq("market_id", marketId);
 
           processed++;
           break;
@@ -206,11 +225,15 @@ export async function POST() {
       }
     }
 
+    // Check for expired markets and auto-resolve price markets
+    const autoResolved = await checkExpiredMarkets();
+
     return NextResponse.json({
       success: true,
       processed,
       logsFound: logs.length,
       blockRange: { from: fromBlock.toString(), to: currentBlock.toString() },
+      autoResolved,
     });
   } catch (error) {
     console.error("Agent watch error:", error);

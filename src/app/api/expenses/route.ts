@@ -12,10 +12,11 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Missing wallet" }, { status: 400 });
   }
 
+  const walletLower = wallet.toLowerCase();
   let query = supabase
     .from("expenses")
     .select("*")
-    .eq("user_wallet", wallet)
+    .ilike("user_wallet", walletLower)
     .order("created_at", { ascending: false });
 
   if (category) {

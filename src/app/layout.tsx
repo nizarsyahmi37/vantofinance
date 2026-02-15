@@ -6,9 +6,9 @@ import { Providers } from "@/components/Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Vanto - AI Financial Agent on Tempo",
+  title: "Vanto - AI Financial Agent",
   description:
-    "Your AI financial agent on Tempo. Invoicing, expenses, payments, and predictions in one conversational interface.",
+    "Your AI financial agent. Invoicing, expenses, payments, and predictions in one conversational interface.",
 };
 
 export default function RootLayout({

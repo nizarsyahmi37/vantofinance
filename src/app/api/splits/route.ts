@@ -10,16 +10,17 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Missing wallet" }, { status: 400 });
   }
 
+  const walletLower = wallet.toLowerCase();
   const { data: createdSplits } = await supabase
     .from("splits")
     .select("*, split_members(*)")
-    .eq("creator_wallet", wallet)
+    .ilike("creator_wallet", walletLower)
     .order("created_at", { ascending: false });
 
   const { data: memberSplits } = await supabase
     .from("split_members")
     .select("*, splits:split_id(*)")
-    .eq("wallet", wallet);
+    .ilike("wallet", walletLower);
 
   const allSplitIds = new Set<string>();
   const splits: any[] = [];

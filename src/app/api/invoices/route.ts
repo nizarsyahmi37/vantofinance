@@ -12,12 +12,13 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Missing wallet" }, { status: 400 });
   }
 
+  const walletLower = wallet.toLowerCase();
   let query = supabase.from("invoices").select("*");
 
   if (direction === "sent") {
-    query = query.eq("creator_wallet", wallet);
+    query = query.ilike("creator_wallet", walletLower);
   } else {
-    query = query.eq("recipient_wallet", wallet);
+    query = query.ilike("recipient_wallet", walletLower);
   }
 
   if (status && status !== "all") {
