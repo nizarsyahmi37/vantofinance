@@ -33,7 +33,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps = {}) {
   const SidebarContent = () => (
     <>
       <div className="flex items-center justify-between gap-2 px-6 py-5 border-b">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center cursor-default gap-2">
           <div className="w-8 h-8 rounded-lg bg-vanto-600 flex items-center justify-center">
             <Zap className="w-5 h-5 text-white" />
           </div>
