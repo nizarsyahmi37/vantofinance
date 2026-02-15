@@ -50,7 +50,7 @@ export default function DashboardPage() {
           <Link
             key={stat.label}
             href={stat.href}
-            className="rounded-xl bg-white p-6 hover:bg-gray-100 hover:shadow-sm transition-transform hover:scale-105 hover:border hover:-mb-0.5"
+            className="rounded-xl bg-white p-6 hover:bg-gray-100 hover:shadow-sm transition-transform hover:scale-103 hover:border hover:-mb-0.5"
           >
             <div className="flex items-center gap-8">
               <div className={`w-10 h-10 rounded-lg ${stat.color} flex items-center justify-center`}>
