@@ -15,6 +15,7 @@ export default function DashboardLayout({
   const { ready, authenticated, login } = usePrivy();
   const router = useRouter();
   const [chatOpen, setChatOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     if (ready && !authenticated) {
@@ -36,11 +37,12 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen flex bg-gray-50">
-      <Sidebar />
+      <Sidebar isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
       <div className="flex-1 flex flex-col">
         <Header
           onToggleChat={() => setChatOpen((v) => !v)}
           chatOpen={chatOpen}
+          onToggleMenu={() => setMenuOpen((v) => !v)}
         />
         <main className="flex-1 p-6 overflow-auto">{children}</main>
       </div>

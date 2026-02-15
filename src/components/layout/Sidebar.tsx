@@ -10,7 +10,9 @@ import {
   Users,
   TrendingUp,
   Zap,
+  X,
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -20,16 +22,33 @@ const navItems = [
   { href: "/dashboard/markets", label: "Markets", icon: TrendingUp },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function Sidebar({ isOpen = false, onClose }: SidebarProps = {}) {
   const pathname = usePathname();
 
-  return (
-    <aside className="hidden md:flex w-64 flex-col border-r bg-white">
-      <div className="flex items-center gap-2 px-6 py-5 border-b">
-        <div className="w-8 h-8 rounded-lg bg-vanto-600 flex items-center justify-center">
-          <Zap className="w-5 h-5 text-white" />
+  const SidebarContent = () => (
+    <>
+      <div className="flex items-center justify-between gap-2 px-6 py-5 border-b">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-vanto-600 flex items-center justify-center">
+            <Zap className="w-5 h-5 text-white" />
+          </div>
+          <span className="text-xl font-bold text-vanto-800">Vanto</span>
         </div>
-        <span className="text-xl font-bold text-vanto-800">Vanto</span>
+        
+        {/* Close button for mobile/tablet */}
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        )}
       </div>
 
       <nav className="flex-1 px-3 py-4 space-y-1">
@@ -41,6 +60,7 @@ export function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={onClose}
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
                 isActive
@@ -61,6 +81,42 @@ export function Sidebar() {
           <p className="text-vanto-500 mt-0.5">Gasless payments</p>
         </div>
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Desktop Sidebar - visible on large screens (≥1024px) */}
+      <aside className="hidden lg:flex w-64 flex-col border-r bg-white">
+        <SidebarContent />
+      </aside>
+
+      {/* Mobile/Tablet Drawer - visible on mobile and tablet (<1024px) */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={onClose}
+              className="lg:hidden fixed inset-0 bg-black/50 z-40"
+            />
+
+            {/* Drawer */}
+            <motion.aside
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
+              className="lg:hidden fixed left-0 top-0 bottom-0 w-64 flex flex-col border-r bg-white z-50"
+            >
+              <SidebarContent />
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
