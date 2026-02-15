@@ -87,8 +87,6 @@ export default function InvoicesPage() {
             <InvoiceCard
               key={invoice.id}
               invoice={invoice}
-              direction={direction}
-              onPaid={fetchInvoices}
             />
           ))}
         </div>
