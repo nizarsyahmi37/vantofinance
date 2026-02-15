@@ -88,6 +88,7 @@ export interface Market {
   resolution: number | null;
   total_pool: number;
   token: string;
+  market_type: "binary" | "price";
   created_at: string;
 }
 
