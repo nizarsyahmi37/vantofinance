@@ -123,7 +123,7 @@ export default function MarketsPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {markets.map((market) => (
-                <MarketCard key={market.id} market={market} userWallet={wallet} />
+                <MarketCard key={market.id} market={market} />
               ))}
             </div>
           )}
@@ -143,7 +143,7 @@ export default function MarketsPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {myBets.map((market) => (
-                <MarketCard key={market.id} market={market} userWallet={wallet} />
+                <MarketCard key={market.id} market={market} />
               ))}
             </div>
           )}
