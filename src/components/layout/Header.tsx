@@ -2,7 +2,7 @@
 
 import { usePrivy } from "@privy-io/react-auth";
 import { shortenAddress } from "@/lib/utils";
-import { LogOut, MessageSquare, Menu, ChevronDown, Copy, Check } from "lucide-react";
+import { LogOut, MessageSquare, Menu, ChevronDown, Copy, Check, WalletIcon, Zap } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -47,36 +47,32 @@ export function Header({ onToggleChat, chatOpen, onToggleMenu }: HeaderProps) {
           </button>
         )}
         
-        <h1 className="text-lg font-semibold text-gray-900 lg:hidden">Vanto</h1>
+        <div className="flex items-center gap-2 cursor-default lg:hidden">
+          <div className="w-8 h-8 rounded-lg bg-vanto-600 flex items-center justify-center">
+            <Zap className="w-5 h-5 text-white" />
+          </div>
+          <span className="text-xl font-bold text-vanto-800">Vanto</span>
+        </div>
       </div>
 
       <div className="flex items-center gap-3">
-        <button
-          onClick={onToggleChat}
-          className={
-            chatOpen
-              ? "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors bg-vanto-100 text-vanto-700"
-              : "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors bg-vanto-600 text-white hover:bg-vanto-700"
-          }
-        >
-          <MessageSquare className="w-4 h-4" />
-          <span className="hidden sm:inline">AI Agent</span>
-        </button>
+
 
         {/* User Dropdown */}
         <div className="relative">
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg border hover:bg-vanto-100 transition-colors hover:text-vanto-900"
           >
+            <WalletIcon className="w-4 h-4"></WalletIcon>
             <span className="text-sm text-gray-700">
               {wallet ? shortenAddress(wallet) : email || phone || "User"}
             </span>
             <motion.div
               animate={{ rotate: dropdownOpen ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.3 }}
             >
-              <ChevronDown className="w-4 h-4 text-gray-400" />
+              <ChevronDown className="w-4 h-4" />
             </motion.div>
           </button>
 
@@ -100,10 +96,10 @@ export function Header({ onToggleChat, chatOpen, onToggleMenu }: HeaderProps) {
                 >
                   <div className="">
                     {wallet && (
-                      <div className="px-4 py-3 border-b">
-                        <p className="text-xs text-gray-500 mb-1">Wallet Address</p>
+                      <div className="px-4 py-3 border-b hover:bg-gray-100">
+                        <p className="text-xs text-gray-500 mb-1 cursor-pointer">Wallet Address</p>
                         <div className="flex items-center justify-between gap-2">
-                          <code className="text-xs text-gray-900 font-mono">
+                          <code className="text-xs text-gray-900 cursor-pointer font-mono">
                             {maskedWallet}
                           </code>
                           <button
@@ -140,7 +136,7 @@ export function Header({ onToggleChat, chatOpen, onToggleMenu }: HeaderProps) {
                     )}
 
                     {(email || phone) && (
-                      <div className="px-4 py-3 border-b">
+                      <div className="px-4 py-3 border-b cursor-pointer hover:bg-gray-100">
                         <p className="text-xs text-gray-500 mb-1">
                           {email ? "Email" : "Phone"}
                         </p>
@@ -166,6 +162,17 @@ export function Header({ onToggleChat, chatOpen, onToggleMenu }: HeaderProps) {
             )}
           </AnimatePresence>
         </div>
+                <button
+          onClick={onToggleChat}
+          className={
+            chatOpen
+              ? "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors bg-vanto-100 text-vanto-700"
+              : "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors bg-vanto-600 text-white hover:bg-vanto-700"
+          }
+        >
+          <MessageSquare className="w-4 h-4" />
+          <span className="hidden sm:inline">AI Agent</span>
+        </button>
       </div>
     </header>
   );
